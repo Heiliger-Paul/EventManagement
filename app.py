@@ -10,7 +10,7 @@ def get_db_connection():
         port="3307",
         user="root",
         password="",
-        database="gonfer"
+        database="bishoftu"
     )
 
 @app.route('/')
@@ -38,7 +38,7 @@ def auth():
                 session['email'] = user['Email']
                 flash('Login successful', 'success')
                 return redirect(url_for('event_list'))
-            elif email == 'admin@example.com' and password == 'adminpassword':
+            elif email == 'admin@example.com' and password == 'adminkp':
                 return redirect(url_for('admin'))
             else:
                 flash('Invalid credentials, try again', 'danger')
@@ -72,10 +72,14 @@ def admin():
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute('''
-        SELECT ce.EventID, ce.Name AS EventName, o.Email AS OwnerEmail
-        FROM ConferenceEvent ce
-        JOIN Owner o ON ce.OwnerID = o.OwnerID
-    ''')
+    SELECT ce.EventID, ce.Name AS EventName, o.Email AS OwnerEmail,
+           CASE WHEN e.Name IS NOT NULL THEN 'Assigned' ELSE 'Awaited' END AS Status
+    FROM ConferenceEvent ce
+    JOIN Owner o ON ce.OwnerID = o.OwnerID
+    LEFT JOIN Event_Employee ee ON ce.EventID = ee.EventID
+    LEFT JOIN Employee e ON ee.EmployeeID = e.EmployeeID
+''')
+
     events = cursor.fetchall()
 
     cursor.execute('SELECT EmployeeID, Name FROM Employee')
@@ -191,12 +195,19 @@ def assign_employee():
         VALUES (%s, %s)
     ''', (event_id, employee_id))
     
+    cursor.execute('''
+        UPDATE ConferenceEvent 
+        SET Status = 'Assigned' 
+        WHERE EventID = %s
+    ''', (event_id,))
+
     conn.commit()
     cursor.close()
     conn.close()
     
     flash('Employee assigned successfully', 'success')
     return redirect(url_for('admin'))
+
 
 @app.route('/hall_list')
 def hall_list():
@@ -224,56 +235,88 @@ def employee_list():
     
     return render_template('employee_list.html', employees=employees)
 
-@app.route('/update_event', methods=['POST'])
-def update_event():
-    event_id = request.form['event_id']
-    updates = {}
-    
-    if 'event_name' in request.form:
-        updates['Name'] = request.form['event_name']
-    if 'event_type' in request.form:
-        updates['Type'] = request.form['event_type']
-    if 'conference_hall' in request.form:
-        updates['ConferenceHall'] = request.form['conference_hall']
-    if 'event_date' in request.form:
-        updates['EventDate'] = request.form['event_date']
-    if 'start_time' in request.form:
-        updates['StartTime'] = request.form['start_time']
-    if 'end_time' in request.form:
-        updates['EndTime'] = request.form['end_time']
-    if 'number_of_attendees' in request.form:
-        updates['NumberOfAttendees'] = request.form['number_of_attendees']
-    
-    set_clause = ', '.join(f"{key} = %s" for key in updates.keys())
-    values = list(updates.values())
-    values.append(event_id)
-    
+@app.route('/delete_event/<int:event_id>', methods=['POST'])
+def delete_event(event_id):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute(f"UPDATE ConferenceEvent SET {set_clause} WHERE EventID = %s", values)
-    conn.commit()
-    cursor.close()
-    conn.close()
+
+    try:
+        cursor.execute('DELETE FROM Event_Employee WHERE EventID = %s', (event_id,))
+        cursor.execute('DELETE FROM Event_Hall WHERE EventID = %s', (event_id,))
+        
+        cursor.execute('DELETE FROM ConferenceEvent WHERE EventID = %s', (event_id,))
+        
+        conn.commit()
+        flash('Event deleted successfully!')
+    except mysql.connector.Error as err:
+        flash(f'Error: {err}')
+        conn.rollback()
+    finally:
+        cursor.close()
+        conn.close()
     
-    flash('Event updated successfully', 'success')
     return redirect(url_for('event_list'))
 
-@app.route('/delete_event', methods=['POST'])
-def delete_event():
-    event_id = request.form['event_id']
-    
+@app.route('/update_event/<int:event_id>', methods=['GET', 'POST'])
+def update_event(event_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute('SELECT * FROM ConferenceEvent WHERE EventID = %s', (event_id,))
+    event = cursor.fetchone()
+
+    if request.method == 'POST':
+        event_name = request.form['event_name']
+        event_type = request.form['event_type']
+        conference_hall = request.form['hall_name']
+        event_date = request.form['event_date']
+        start_time = request.form['start_time']
+        end_time = request.form['end_time']
+        number_of_attendees = request.form['number_of_attendees']
+
+        cursor.execute('''UPDATE ConferenceEvent 
+                        SET Name = %s, Type = %s, EventDate = %s, StartTime = %s, EndTime = %s, NumberOfAttendees = %s
+                        WHERE EventID = %s''',
+                     (event_name, event_type, event_date, start_time, end_time, number_of_attendees, event_id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        flash('Event updated successfully!')
+        return redirect(url_for('event_list'))
+
+    cursor.close()
+    conn.close()
+    return render_template('registerForm.html', event=event)
+
+@app.route('/owners_list')
+def owners_list():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute('SELECT * FROM Owner')
+    owners = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    return render_template('owners_list.html', owners=owners)
+
+@app.route('/delete_owner/<int:owner_id>', methods=['POST'])
+def delete_owner(owner_id):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM ConferenceEvent WHERE EventID = %s", (event_id,))
-    cursor.execute("DELETE FROM Event_Hall WHERE EventID = %s", (event_id,))
-    cursor.execute("DELETE FROM Event_Employee WHERE EventID = %s", (event_id,))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    
-    flash('Event deleted successfully', 'success')
-    return redirect(url_for('event_list'))
 
+    try:
+        cursor.execute('DELETE FROM Owner WHERE OwnerID = %s', (owner_id,))
+        conn.commit()
+        flash('Owner deleted successfully!', 'success')
+    except mysql.connector.Error as err:
+        flash(f'Error: {err}', 'danger')
+        conn.rollback()
+    finally:
+        cursor.close()
+        conn.close()
+
+    return redirect(url_for('owners_list'))
 
 if __name__ == '__main__':
     app.run(debug=True)

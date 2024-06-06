@@ -16,7 +16,6 @@
 *::selection{
     background: var(--main);
     color: #000;
-
 }
 html{
     font-size: 62.5%;
@@ -77,6 +76,9 @@ header{
 header .logo img {
     height: 6rem;
 }
+header .navbar {
+    display: flex;
+}
 header .navbar a{
     color:#fff;
     margin-left: 2rem;
@@ -90,6 +92,28 @@ header .navbar a:hover{
     font-size: 3rem;
     cursor: pointer;
     display: none;
+}
+header .navbar.active {
+    display: flex;
+}
+@media (max-width: 768px) {
+    header .navbar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 10rem;
+        left: 0;
+        right: 0;
+        background: #000;
+        text-align: center;
+        padding: 1rem 0;
+    }
+    header .navbar a {
+        margin: 1rem 0;
+    }
+    #MenuBtn {
+        display: block;
+    }
 }
 /* Header End  */
 

@@ -40,70 +40,74 @@
         <header>Event Reservation Form</header>
     </div>
 
+{% if event %}
+<form action="{{ url_for('update_event', event_id=event.EventID) }}" method="POST">
+{% else %}
 <form action="{{ url_for('submit_event') }}" method="POST">
-<div class="form first">
-<!-- event details -->
+{% endif %}
+    <div class="form first">
+    <!-- event details -->
         <div class="details ID">
             <span class="title">Event Details</span>
 
             <div class="fields">
                 <div class="input-field">
                     <label>Event name</label>
-                    <input type="text" name="event_name" placeholder="Event name" required>
+                    <input type="text" name="event_name" placeholder="Event name" value="{{ event['Name'] if event else '' }}" required>
                 </div>
 
                 <div class="input-field">
                     <label>Event type</label>
-                    <input type="text" name="event_type" placeholder="Event type" required>
+                    <input type="text" name="event_type" placeholder="Event type" value="{{ event['Type'] if event else '' }}" required>
                 </div>
 
                 <div class="input-field">
                     <label>Conference hall</label>
                     <select name="hall_name" id="hall" title="choose-hall">
                         <option value="none">Choose conference hall</option>
-                        <option value="Hall A">Small meeting hall</option>  <!--comment it boy-->
-                        <option value="Small meeting hall">Small meeting hall</option>
-                        <option value="Small auditorium">Small auditorium</option>
-                        <option value="Medium sized auditorium">Medium sized auditorium</option>
-                        <option value="Large auditorium">Large auditorium</option>
-                        <option value="X large auditorium">X large auditorium</option>
+                        <!-- <option value="Hall A" {{ 'selected' if event and event['ConferenceHall'] == 'Hall A' else '' }}>Hall A</option> -->
+                        <option value="Small meeting hall" {{ 'selected' if event and event['ConferenceHall'] == 'Small meeting hall' else '' }}>Small meeting hall</option>
+                        <option value="Small auditorium" {{ 'selected' if event and event['ConferenceHall'] == 'Small auditorium' else '' }}>Small auditorium</option>
+                        <option value="Medium sized auditorium" {{ 'selected' if event and event['ConferenceHall'] == 'Medium sized auditorium' else '' }}>Medium sized auditorium</option>
+                        <option value="Large auditorium" {{ 'selected' if event and event['ConferenceHall'] == 'Large auditorium' else '' }}>Large auditorium</option>
+                        <option value="X large auditorium" {{ 'selected' if event and event['ConferenceHall'] == 'X large auditorium' else '' }}>X large auditorium</option>
                     </select>
                 </div>
 
                 <div class="input-field">
                     <label>Event date</label>
-                    <input type="date" name="event_date" placeholder="Event date" required>
+                    <input type="date" name="event_date" placeholder="Event date" value="{{ event['EventDate'] if event else '' }}" required>
                 </div>
 
                 <div class="input-field">
                     <label>Event start time</label>
-                    <input type="time" name="start_time" placeholder="Event start time" required>
+                    <input type="time" name="start_time" placeholder="Event start time" value="{{ event['StartTime'] if event else '' }}" required>
                 </div>
 
                 <div class="input-field">
                     <label>Event end time</label>
-                    <input type="time" name="end_time" placeholder="Event end time" required>
+                    <input type="time" name="end_time" placeholder="Event end time" value="{{ event['EndTime'] if event else '' }}" required>
                 </div>
 
                 <div class="input-field">
                     <label>Location</label>
-                    <input type="text" name="location" placeholder="Bishoftu" required disabled>
+                    <input type="text" name="location" placeholder="Bishoftu" value="Bishoftu" required disabled>
                 </div>
                 
                 <div class="input-field">
                     <label>Location</label>
-                    <input type="text" name="location" placeholder="Bishoftu" required disabled>
+                    <input type="text" name="location" placeholder="Bishoftu" value="Bishoftu" required disabled>
                 </div>
 
                 <div class="input-field">
                     <label>Number of attendees</label>
-                    <input type="number" name="number_of_attendees" placeholder="Number of attendees" required>
+                    <input type="number" name="number_of_attendees" placeholder="Number of attendees" value="{{ event['NumberOfAttendees'] if event else '' }}" required>
                 </div>
             </div>
         </div>
-</div>
+    </div>
 
-<div class="submit"> <button type="submit">Submit</button> </div>
+    <div class="submit"> <button type="submit">Submit</button> </div>
 </form>
 </div>
 </main>
@@ -146,7 +150,7 @@
             <span>Learn</span><br>
             <span>Login</span><br>
             <span>Reach</span><br>
-            <span><a href="{{ url_for('auth') }}">Admin</a></span><br>
+            <span>Reach</span><br>
         </div>
 
         <div class="col-sm-3">

@@ -9,9 +9,8 @@ window.onscroll = () => {
 MenuBtn.onclick = () => {
     MenuBtn.classList.toggle("fa-times");
     Navbar.classList.toggle("active");
-}
+};
 
-//swiper 
 var swiper = new Swiper(".ReviewSlider", {
     slidesPerView: 1,
     grabCursor: true,

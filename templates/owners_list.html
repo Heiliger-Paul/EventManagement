@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/admin1.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owners List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>List of Owners</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>OwnerID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for owner in owners %}
+                <tr>
+                    <td>{{ owner.OwnerID }}</td>
+                    <td>{{ owner.FullName }}</td>
+                    <td>{{ owner.Email }}</td>
+                    <td>{{ owner.Phone }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_owner', owner_id=owner.OwnerID) }}" method="post">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this owner?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

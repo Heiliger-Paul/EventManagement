@@ -9,7 +9,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "gonfer",
+            "name": "gofer",
             "database": "gonfer",
             "username": "root",
             "password": "password"
