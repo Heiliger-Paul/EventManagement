@@ -1,0 +1,31 @@
+main{
+    margin-top: 12rem; 
+    font-size:2rem;
+}
+.form-control{
+    font-size: 2rem;
+}
+.btn{
+    margin: 0 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: transparent;
+    height: 10rem;
+    color: black;
+}
+button{
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #A7E6FF;
+}
+h2{
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bolder;
+    font-style: oblique;
+}

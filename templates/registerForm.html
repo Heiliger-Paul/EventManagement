@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/report-form.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.css"/>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/registerForm.css">
+    <title>Reservation form</title>
+</head>
+<body>
+<header>
+    <a href="#" class="logo">
+        <img src="../static/images/logo.jpg" alt="">
+    </a>
+
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('index') }}">Info</a>
+        <a href="{{ url_for('index') }}">About</a>
+        <a href="{{ url_for('index') }}">Service</a>
+        <a href="{{ url_for('index') }}">Gallery</a>
+        <a href="{{ url_for('event_list') }}">My Events</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    
+    <div class="fas fa-bars" id="MenuBtn"></div>
+</header>
+
+
+
+
+
+<main>
+  <div class="container">
+    <div class="header">
+        <header>Event Reservation Form</header>
+    </div>
+
+<form action="{{ url_for('submit_event') }}" method="POST">
+<div class="form first">
+<!-- event details -->
+        <div class="details ID">
+            <span class="title">Event Details</span>
+
+            <div class="fields">
+                <div class="input-field">
+                    <label>Event name</label>
+                    <input type="text" name="event_name" placeholder="Event name" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Event type</label>
+                    <input type="text" name="event_type" placeholder="Event type" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Conference hall</label>
+                    <select name="hall_name" id="hall" title="choose-hall">
+                        <option value="none">Choose conference hall</option>
+                        <option value="Hall A">Small meeting hall</option>  <!--comment it boy-->
+                        <option value="Small meeting hall">Small meeting hall</option>
+                        <option value="Small auditorium">Small auditorium</option>
+                        <option value="Medium sized auditorium">Medium sized auditorium</option>
+                        <option value="Large auditorium">Large auditorium</option>
+                        <option value="X large auditorium">X large auditorium</option>
+                    </select>
+                </div>
+
+                <div class="input-field">
+                    <label>Event date</label>
+                    <input type="date" name="event_date" placeholder="Event date" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Event start time</label>
+                    <input type="time" name="start_time" placeholder="Event start time" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Event end time</label>
+                    <input type="time" name="end_time" placeholder="Event end time" required>
+                </div>
+
+                <div class="input-field">
+                    <label>Location</label>
+                    <input type="text" name="location" placeholder="Bishoftu" required disabled>
+                </div>
+                
+                <div class="input-field">
+                    <label>Location</label>
+                    <input type="text" name="location" placeholder="Bishoftu" required disabled>
+                </div>
+
+                <div class="input-field">
+                    <label>Number of attendees</label>
+                    <input type="number" name="number_of_attendees" placeholder="Number of attendees" required>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="submit"> <button type="submit">Submit</button> </div>
+</form>
+</div>
+</main>
+
+
+
+
+
+<!-- footer starts -->
+<footer>
+    <div class="container">
+        <div class="row text-center justify-content-center">
+
+        <div class="col-sm-2">
+            <h6>About</h6>
+            <span>Learn</span><br>
+            <span>Login</span><br>
+            <span>Reach</span><br>
+            <span>Docs</span><br>
+        </div>
+
+        <div class="col-sm-2">
+            <h6>Address</h6>
+            <span>Learn</span><br>
+            <span>Login</span><br>
+            <span>Reach</span><br>
+            <span>Docs</span><br>
+        </div>
+
+        <div class="col-sm-2">
+            <h6>Docs</h6>
+            <span>Learn</span><br>
+            <span>Login</span><br>
+            <span>Reach</span><br>
+            <span>Docs</span><br>
+        </div>
+
+        <div class="col-sm-2">
+            <h6>Resources</h6>
+            <span>Learn</span><br>
+            <span>Login</span><br>
+            <span>Reach</span><br>
+            <span><a href="{{ url_for('auth') }}">Admin</a></span><br>
+        </div>
+
+        <div class="col-sm-3">
+            <h6>Subscribe us</h6>
+            <span>Subscribe for daily notification</span>
+            <input type="text" class="font-weight-bold form-control" placeholder="Enter your email">
+            <button type="submit" class="font-weight-bold btn btn-sm float-left">Subscribe</button>
+        </div>
+        </div>
+    </div>
+</footer>
+<!-- footer ends -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.js"></script>    
+</body>
+</html>
+

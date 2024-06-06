@@ -1,0 +1,91 @@
+:root {
+    --main: #2A629A;
+    --box_shadow: 0.5rem 1rem 1.5rem rgba(0, 0, 0, 0.7);
+    --border: 12px solid var(--main);
+}
+body{
+    background-color: #E49BFF;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+main{
+    margin: 5rem;
+    margin-top: 0rem;
+    margin-left: 6.5rem;
+    padding: 5rem;
+    width: 90vw;
+}
+.container{
+    margin-top: 13rem;
+}
+.event .title{
+    text-transform: capitalize;
+    display: block;
+    text-align: center;
+    margin: auto;
+    color: white;
+    font-size: x-large;
+}
+.personal{
+    margin-bottom: 5rem; 
+}
+.event .title2{
+    margin-top: 5rem;
+}
+.customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.customers td{
+    text-align:left;
+    font-size: 12px;
+}
+.customers td, .customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.personal td, .personal th{
+    width: 20rem;
+}
+.events td, .events th{
+    width: 7rem;
+}
+.customers tr:nth-child(2n){
+    background-color: #B5C18E; 
+}
+.customers tr:nth-child(2n+1){
+    background-color: #C7B7A3; 
+}
+.customers tr:hover {
+    background-color: #ddd;
+}
+.customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #A67B5B;
+    color: white;
+    font-size: 16px;
+}
+.btn{
+    margin: 2rem 5rem;
+}
+.btn-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-logout{
+    margin-left: 60rem;
+    margin-bottom: 5rem;
+}
+.ctr{
+    width: 100%;
+    height: 100%;
+    /* box-shadow: 0.5rem 0.5rem 3rem rgba(243, 0, 0, 0.7); */
+    padding: 0px;
+}
+.modify{
+    margin: 0 5px;
+}
