@@ -8,8 +8,8 @@ To get started with this project, follow the steps below:
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/Heiliger-Paul/event-management-website.git
-   cd event-management-website
+   git clone https://github.com/Heiliger-Paul/EventManagement.git
+   cd EventManagement
    ```
 
 2. **Install the required dependencies:**
@@ -19,7 +19,7 @@ To get started with this project, follow the steps below:
 
 3. **Setup the MySQL database:**
    - Ensure you have MySQL installed and running.
-   - Create a database named `event_management`.
+   - Create a database named `bishoftu`.
    - Execute the SQL commands provided in the `bishoftu.sql` file to create the necessary tables and insert sample data.
 
 4. **Run the Flask application:**
@@ -41,7 +41,7 @@ To get started with this project, follow the steps below:
 ## Project Structure
 
 ```
-event-management-website/
+EventManagement/
 │
 ├── static/
 │   ├── css/
@@ -67,7 +67,7 @@ The `bishoftu.sql` file contains the SQL commands to create the necessary tables
 
 ## Contributions
 
-Contributions to the project are welcome. Feel free to open issues or submit pull requests on the [GitHub repository](https://github.com/Heiliger-Paul/event-management-website).
+Contributions to the project are welcome. Feel free to open issues or submit pull requests on the [GitHub repository](https://github.com/Heiliger-Paul/EventManagement).
 
 ## License
 
