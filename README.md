@@ -57,7 +57,7 @@ event-management-website/
 
 ## Database Setup
 
-The `database.sql` file contains the SQL commands to create the necessary tables and insert sample data for the Event Management Website. You can execute these commands using your preferred MySQL client or command line tool.
+The `bishoftu.sql` file contains the SQL commands to create the necessary tables and insert sample data for the Event Management Website. You can execute these commands using your preferred MySQL client or command line tool.
 
 ## Usage
 
