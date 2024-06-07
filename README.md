@@ -20,7 +20,7 @@ To get started with this project, follow the steps below:
 3. **Setup the MySQL database:**
    - Ensure you have MySQL installed and running.
    - Create a database named `event_management`.
-   - Execute the SQL commands provided in the `database.sql` file to create the necessary tables and insert sample data.
+   - Execute the SQL commands provided in the `bishoftu.sql` file to create the necessary tables and insert sample data.
 
 4. **Run the Flask application:**
    ```sh
