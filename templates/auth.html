@@ -1,132 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/x-icon" href="../static/images/security-admin.png">
-
-    <link rel="stylesheet" href="../static/css/auth.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/css/auth.css">
     <title>Auth Section</title>
 </head>
-
 <body>
-
-    <!-- blue circle background -->
-    <div class="d-none d-md-block ball login bg-secondary bg-gradient position-absolute rounded-circle"></div>
-
-
-
-
-
-    <div class="container login__form active">
-        <div class="row vh-100 w-100 align-self-center">
-            <div class="col-12 col-lg-6 col-xl-6 px-5">
-                <div class="row vh-100">
-                    <div class="col align-self-center p-5 w-100">
-                        <h3 class="fw-bolder">WELCOME BACK !</h3>
-                        <p class="fw-lighter fs-6">Don't have an account, <span id="signUp" role="button" class="text-primary">Sign Up</span></p>
-                        <!-- form login section -->
-                        <form action="{{ url_for('auth') }}" method="post" class="mt-5">
-                            <input type="hidden" name="form_type" value="login">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" name="email" id="email" class="form-control text-indent shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3" placeholder="www.bussiness@example.com">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="d-flex position-relative">
-                                    <input type="password" name="password" id="password" class="form-control text-indent shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3">
-                                </div>
-                            </div>
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-outline-dark btn-lg rounded-pill mt-4 w-100">Login</button>
-                            </div>
-                        </form>
-                        <p class="mt-5 text-center">Or Sign in with social platforms</p>
-                        <div class="row text-center">
-                            <div class="col mt-3">
-                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-facebook fs-5"></i></a>
-                            </div>
-                            <div class="col mt-3">
-                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-linkedin fs-5"></i></a>
-                            </div>
-                            <div class="col mt-3">
-                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-twitter fs-5"></i></a>
-                            </div>
-                            <div class="col my-3">
-                                <a href="" class="btn btn-outline-dark border-2 rounded-circle"><i class="bi bi-google fs-5"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- login section -->
+    <section class="back login__form active" data-tilt>
+        <h2>WELCOME BACK !</h2>
+        <p>Don't have an account? <a href="#" id="signUp">Sign Up</a></p>
+        <form action="{{ url_for('auth') }}" method="post">
+            <input type="hidden" name="form_type" value="login">
+            <div>
+                <label for="email" class="form-label email">Email</label>
+                <input type="text" name="email" id="email" placeholder="www.bussiness@example.com">
             </div>
-            <div class="d-none d-lg-block col-lg-6 col-xl-6 p-5">
-                <div class="row vh-100 p-5">
-                    <div class="col align-self-center p-5 text-center">
-                        <img src="../static/images/login.png" class="bounce" alt="">
-                    </div>
-                </div>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" placeholder="password">
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="other-sign">
+            <p class="mt-5 text-center">Or Sign in with social platforms</p>
+            <div class="icon-container">
+                <img class="icon" src="../static/images/facebook.png" alt="">
+                <img class="icon" src="../static/images/twitter.png" alt="">
+                <img class="icon" src="../static/images/telegram.png" alt="">
             </div>
         </div>
-    </div>
+    </section>
 
-
-
-
-
-    <!-- Register Section -->
-    <div class="container register__form">
-        <div class="row vh-100 w-100 align-self-center">
-            <div class="d-none d-lg-block col-lg-6 col-xl-6 p-5">
-                <div class="row vh-100 p-5">
-                    <div class="col align-self-center p-5 text-center">
-                        <img src="../static/images/register.png" class="bounce" alt="">
-                    </div>
-                </div>
+    <!-- register section -->
+    <section class="back register register__form" data-tilt>
+        <h2>JOIN US! </h2>
+        <p>Already have an account? <a href="#" id="signIn">Sign In</a></p>
+        <form action="{{ url_for('auth') }}" method="post">
+            <input type="hidden" name="form_type" value="register">
+            <div>
+                <label for="fullname" id="fullname" class="form-label">Full name</label>
+                <input type="text" name="fullname" placeholder="name">
             </div>
-            <div class="col-12 col-lg-6 col-xl-6 px-5">
-                <div class="row vh-100">
-                    <div class="col align-self-center p-5 w-100">
-                        <h3 class="fw-bolder">REGISTER HERE !</h3>
-                        <p class="fw-lighter fs-6">Have an account, <span id="signIn" role="button" class="text-primary">Sign In</span></p>
-                        <!-- form register section -->
-                        <form action="{{ url_for('auth') }}" method="post" class="mt-5">
-                            <input type="hidden" name="form_type" value="register">
-                            <div class="mb-3">
-                                <label for="fullname" class="form-label">Full name</label>
-                                <input type="text" name="fullname" id="fullname" class="form-control text-indent shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3" placeholder="name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone number</label>
-                                <input type="number" name="phone" id="phone" class="form-control text-indent shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3" placeholder="phonenumber">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control text-indent shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3" placeholder="www.bussiness@example.com">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="d-flex position-relative">
-                                    <input type="password" name="password" id="password" class="form-control text-indent auth__password shadow-sm bg-grey-light border-0 rounded-pill fw-lighter fs-7 p-3">
-                                </div>
-                            </div>
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-outline-dark btn-lg rounded-pill mt-4 w-100">Sign Up</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div>
+                <label for="phone" class="form-label">Phone number</label>
+                <input type="number" name="phone" id="phone" placeholder="phonenumber">
+            </div>
+            <div>
+                <label for="email" id="email" class="form-label">Email</label>
+                <input type="email" name="email" placeholder="www.bussiness@example.com">
+            </div>
+            <div>
+                <label for="password" id="password" class="form-label">Password</label>
+                <input type="password" name="password" placeholder="password">
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <div class="other-sign">
+            <p class="mt-5 text-center">Or Sign up with social platforms</p>
+            <div class="icon-container">
+                <img class="icon" src="../static/images/facebook.png" alt="">
+                <img class="icon" src="../static/images/twitter.png" alt="">
+                <img class="icon" src="../static/images/telegram.png" alt="">
             </div>
         </div>
-    </div>
+    </section>
 
-
-
-
-
+    <!-- flask addon -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <script type="text/javascript">
@@ -140,9 +84,8 @@
         </script>
     {% endif %}
     {% endwith %}
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="../static/js/vanilla-tilt.js"></script>
     <script src="../static/js/auth.js"></script>
-</div>
 </body>
 </html>

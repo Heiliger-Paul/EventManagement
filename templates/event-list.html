@@ -89,47 +89,55 @@
 
 <!-- footer starts -->
 <footer>
-    <div class="container">
-        <div class="row text-center justify-content-center">
-            <div class="col-sm-2">
-                <h6>About</h6>
-                <span>Learn</span><br>
-                <span>Login</span><br>
-                <span>Reach</span><br>
-                <span>Docs</span><br>
-            </div>
-
-            <div class="col-sm-2">
-                <h6>Address</h6>
-                <span>Learn</span><br>
-                <span>Login</span><br>
-                <span>Reach</span><br>
-                <span>Docs</span><br>
-            </div>
-
-            <div class="col-sm-2">
-                <h6>Docs</h6>
-                <span>Learn</span><br>
-                <span>Login</span><br>
-                <span>Reach</span><br>
-                <span>Docs</span><br>
-            </div>
-
-            <div class="col-sm-2">
-                <h6>Resources</h6>
-                <span>Learn</span><br>
-                <span>Login</span><br>
-                <span>Reach</span><br>
-                <span>Reach</span><br>
-            </div>
-
-            <div class="col-sm-3">
-                <h6>Subscribe us</h6>
-                <span>Subscribe for daily notification</span>
-                <input type="text" class="font-weight-bold form-control" placeholder="Enter your email">
-                <button type="submit" class="font-weight-bold btn btn-outline-danger btn-sm float-left">Subscribe</button>
-            </div>
+    <div class="container footer-container">
+        <div class="footer-1">
+        <ul>
+            <li><a href="#Home" class="footer-logo"><h4>Bishoftu conference center </h4></a></li>
+            <li><p>Where inovation and collaboration flourishs. <br> Welcome to endeless oportunities!!!</p></li>
+        </ul>
         </div>
+
+        <div class="footer-2">
+            <h4>Sub-Links</h4>
+            <ul class="sub-links">
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#info">Info</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Services">Service</a></li>
+                <li><a href="#Gallery">Gallery</a></li>
+                <li><a href="#Review">Review</a></li>
+                <li><a href="{{ url_for('auth') }}">Login</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-3">
+            <h4>Privacy</h4>
+            <ul class="privacy">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms and conditions</a></li>
+                <li><a href="#">Refund Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-4">
+            <h4>Contact Us</h4>
+            <div>
+                <ul>
+                    <li><p>+01 234 567 8910</p></li>
+                    <li><a href="mailto:heiliger44@gmail.com">heiliger44@gmail.com</a></li>
+                </ul>
+            </div>
+       
+            <ul class="footer-socials">
+                <li><a href="#"><img src="./images/facebook-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="./images/twitter.png" alt=""></a></li>
+                <li><a href="#"><img src="./images/telegram.png" alt=""></a></li>
+                <li><a href="#"><img src="./images/linkedin.png" alt=""></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <small>Copyright &copy; Heiliger_PaulMan</small>
     </div>
 </footer>
 <!-- footer ends -->
